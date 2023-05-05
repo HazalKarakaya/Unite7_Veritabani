@@ -6,9 +6,15 @@
         <entry key="..\:/Users/Ogrenci/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Ogrenci/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/uyg3.xml" value="0.3625" />
         <entry key="..\:/Users/Ogrenci/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/uyg3_listview_satir.xml" value="0.3614583333333333" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3_listview_satir.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3_urun_detay.xml" value="0.1" />
+=======
+        <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3_listview_satir.xml" value="0.1" />
+        <entry key="..\:/Users/Ogrenci/Documents/Unite7_Veritabani/app/src/main/res/layout/uyg3_urundetay.xml" value="0.1" />
+>>>>>>> 61ba2b5 (no message)
       </map>
     </option>
   </component>

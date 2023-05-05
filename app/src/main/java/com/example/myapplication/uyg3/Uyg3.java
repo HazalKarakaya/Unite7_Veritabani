@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.ListAdapter;
+=======
+>>>>>>> 61ba2b5 (no message)
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -21,7 +24,11 @@ public class Uyg3 extends AppCompatActivity {
     SQLiteDatabase database;
 
     Urun urun;
+<<<<<<< HEAD
     ArrayList<Urun> urunler;
+=======
+    ArrayList<Urun>urunler;
+>>>>>>> 61ba2b5 (no message)
     ListView listeUrunler;
     UrunAdapter urunAdapter;
 
@@ -33,16 +40,24 @@ public class Uyg3 extends AppCompatActivity {
         setContentView(R.layout.uyg3);
 
         urunler = new ArrayList<>();
+<<<<<<< HEAD
         listeUrunler =findViewById(R.id.urunListe);
         urunAdapter=new UrunAdapter(Uyg3.this, urunler);
         btnKaydet=findViewById(R.id.btnYeniKayitEkle);
         listeUrunler.setAdapter((ListAdapter) urunAdapter);
+=======
+        listeUrunler = findViewById(R.id.urunListe);
+        urunAdapter = new UrunAdapter(Uyg3.this, urunler);
+        btnKaydet = findViewById(R.id.btnYeniKayitEkle);
+        listeUrunler.setAdapter(urunAdapter);
+>>>>>>> 61ba2b5 (no message)
 
         getAllUrunler();
 
         listeUrunler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+<<<<<<< HEAD
                 Intent i = new Intent(  Uyg3.this, UrunDetay.class);
                 Intent id = i.putExtra( "id", urunler.get(position).getId());
                 startActivity(i);
@@ -72,5 +87,43 @@ public class Uyg3 extends AppCompatActivity {
             urunler.add(urun);
         }
         cursor.close();
+=======
+                Intent i = new Intent(Uyg3.this, UrunDetay.class);
+                i.putExtra("id", urunler.get(position).getId());
+                startActivity(i);
+            }
+        });
+>>>>>>> 61ba2b5 (no message)
     }
+
+
+
+    public void btnYeniKayitEkleClick(View view){
+        Intent i=new Intent( Uyg3.this,UrunKayit.class);
+        i.putExtra( "mod", "ekle");
+        startActivity(i);
+    }
+
+    private void getAllUrunler() {
+        database = this.openOrCreateDatabase("Urun", MODE_PRIVATE, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM urunler", null);
+        int kolonId = cursor.getColumnIndex("id");
+        int kolonUrunAdi = cursor.getColumnIndex("Urunadi");
+        int kolonFiyat = cursor.getColumnIndex("Fiyat");
+        int kolonAdet = cursor.getColumnIndex("adet");
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(kolonId);
+            String urunAdi = cursor.getString(kolonUrunAdi);
+            double fiyat = cursor.getDouble(kolonFiyat);
+            long adet = cursor.getLong(kolonAdet);
+
+            urun = new Urun(id, urunAdi, fiyat, adet, R.drawable.resim_yok);
+            urunler.add(urun);
+        }
+        cursor.close();
+
+
+    }
+
 }
