@@ -107,4 +107,13 @@ public class UrunDetay extends AppCompatActivity {
             Toast.makeText(this, "Veri Güncellendi.", Toast.LENGTH_SHORT).show();
         }
     }
+    public void btnsil(View view){
+     if (!islem){
+         SQLiteStatement sqLiteStatement = database.compileStatement("DELETE FROM urunler WHERE id = ?");
+         sqLiteStatement.bindLong(1,islemid);
+         sqLiteStatement.execute();
+         Toast.makeText(this, "Başarıyla Silindi.", Toast.LENGTH_SHORT).show();
+     }
+     else Toast.makeText(this, "İzinsiz işlem.", Toast.LENGTH_SHORT).show();
+    }
 }
