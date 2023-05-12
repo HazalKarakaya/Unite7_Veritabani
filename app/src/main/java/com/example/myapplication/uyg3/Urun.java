@@ -7,14 +7,15 @@ public class Urun {
   private long adet;
   private int resim;
 
-    public Urun(int id, String urunAdi, double fiyat, long adet, int resim) {
+    public Urun(int id, String urunAdi, double fiyat, long adet) {
         this.id = id;
         this.urunAdi = urunAdi;
         this.fiyat = fiyat;
         this.adet = adet;
-        this.resim = resim;
     }
 
+    public Urun(int id, double fiyat, long adet, int resim_yok) {
+    }
 
 
     public int getId() {
@@ -47,14 +48,6 @@ public class Urun {
 
     public void setAdet(long adet) {
         this.adet = adet;
-    }
-
-    public int getResim() {
-        return resim;
-    }
-
-    public void setResim(int resim) {
-        this.resim = resim;
     }
 }
 

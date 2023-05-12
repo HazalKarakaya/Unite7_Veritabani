@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name=".uyg3.Uyg3"></activity>
+        <activity android:name=".uyg3.UrunDetay"></activity>
     </application>
 
 </manifest>

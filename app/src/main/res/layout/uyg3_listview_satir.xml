@@ -1,91 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/satirUrunResmi"
-        android:scaleType="fitCenter"/>
-=======
-
-<ImageView
-    android:id="@+id/satirUrunResmi"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:scaleType="fitCenter"/>
->>>>>>> 61ba2b5 (no message)
+        android:id="@+id/satirResim"
+        android:layout_width="197dp"
+        android:layout_height="122dp"
+        android:layout_weight="1"
+        tools:srcCompat="@drawable/resim_yok" />
 
     <LinearLayout
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp">
+        android:layout_width="301dp"
+        android:layout_height="126dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-<<<<<<< HEAD
-
-
-    <TextView
-        android:id="@+id/satirUrunAdi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="Ürün Adı"
-        android:textColor="#212121"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-=======
         <TextView
             android:id="@+id/satirUrunAdi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Ürün Adı"
-            android:textColor="#212121"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
->>>>>>> 61ba2b5 (no message)
+            android:paddingTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:text="urunAdi" />
 
         <TextView
             android:id="@+id/satirUrunFiyat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Ürün Fiyatı"
-            android:textColor="#dd2c00"
-<<<<<<< HEAD
-            android:textSize="16sp">
-
-        </TextView>
-=======
-            android:textSize="16sp"/>
->>>>>>> 61ba2b5 (no message)
-
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/red"
+            android:text="urunFiyati" />
     </LinearLayout>
 
     <TextView
-<<<<<<< HEAD
-        android:id="@+id/satirUurnAdet"
-=======
         android:id="@+id/satirUrunAdet"
->>>>>>> 61ba2b5 (no message)
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-<<<<<<< HEAD
-        android:text="999"
-        android:textColor="#f50057"
-        android:textSize="18sp"/>
-
-
-
-=======
-        android:padding="5dp"
-        android:text="999"
-        android:textColor="#f50057"
-        android:textSize="18sp"/>
->>>>>>> 61ba2b5 (no message)
+        android:layout_width="108dp"
+        android:layout_height="125dp"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:text="Adet"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 </LinearLayout>
+

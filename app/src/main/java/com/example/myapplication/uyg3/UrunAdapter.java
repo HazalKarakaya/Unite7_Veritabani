@@ -1,6 +1,7 @@
 package com.example.myapplication.uyg3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,6 @@ public class UrunAdapter extends ArrayAdapter<Urun> {
         TextView satirUrunAdi;
         TextView satirUrunFiyat;
         TextView satirUrunAdet;
-
-
         ImageView satirUrunResmi;
         Urun urun = urunler.get(i);
         if (view == null) {
@@ -52,13 +51,23 @@ public class UrunAdapter extends ArrayAdapter<Urun> {
         satirUrunAdi = view.findViewById(R.id.satirUrunAdi);
         satirUrunFiyat = view.findViewById(R.id.satirUrunFiyat);
         satirUrunAdet = view.findViewById(R.id.satirUrunAdet);
-        satirUrunResmi = view.findViewById(R.id.satirUrunResmi);
-
+        satirUrunResmi = view.findViewById(R.id.satirResim);
+        satirUrunResmi.setImageResource(R.drawable.resim_yok);
         satirUrunAdi.setText(urun.getUrunAdi());
         satirUrunFiyat.setText(String.format("%.02f", urun.getFiyat()) + "TL");
         satirUrunAdet.setText(urun.getAdet() + "");
-        satirUrunResmi.setImageResource(urun.getResim());
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context,UrunDetay.class);
+                i.putExtra("islem",false);
+                i.putExtra("islemid",urun.getId());
+                i.putExtra("kadi",urun.getUrunAdi());
+                i.putExtra("fiyat",urun.getFiyat());
+                i.putExtra("adet",urun.getAdet());
+                context.startActivity(i);
+            }
+        });
         return view;
     }
 
