@@ -35,9 +35,6 @@ public class UrunAdapter extends ArrayAdapter<Urun> {
     @Override
     public long getItemId(int i){return  urunler.get(i).hashCode();}
 
-
-
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         TextView satirUrunAdi;
@@ -52,22 +49,12 @@ public class UrunAdapter extends ArrayAdapter<Urun> {
         satirUrunFiyat = view.findViewById(R.id.satirUrunFiyat);
         satirUrunAdet = view.findViewById(R.id.satirUrunAdet);
         satirUrunResmi = view.findViewById(R.id.satirResim);
+
         satirUrunResmi.setImageResource(R.drawable.resim_yok);
         satirUrunAdi.setText(urun.getUrunAdi());
         satirUrunFiyat.setText(String.format("%.02f", urun.getFiyat()) + "TL");
         satirUrunAdet.setText(urun.getAdet() + "");
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context,UrunDetay.class);
-                i.putExtra("islem",false);
-                i.putExtra("islemid",urun.getId());
-                i.putExtra("kadi",urun.getUrunAdi());
-                i.putExtra("fiyat",urun.getFiyat());
-                i.putExtra("adet",urun.getAdet());
-                context.startActivity(i);
-            }
-        });
+
         return view;
     }
 

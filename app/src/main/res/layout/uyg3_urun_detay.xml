@@ -59,10 +59,11 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonRE"
         android:layout_width="354dp"
         android:layout_height="52dp"
         android:backgroundTint="#AEAEAE"
+        android:onClick="btnResimEkle"
         android:text="Resim Ekle"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +75,7 @@
         app:layout_constraintVertical_bias="0.171" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonD"
         android:layout_width="354dp"
         android:layout_height="52dp"
         android:backgroundTint="#AEAEAE"
@@ -83,10 +84,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="14px"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/buttonRE"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/buttonRE"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRE"
         app:layout_constraintVertical_bias="0.097" />
 
     <Button
@@ -99,10 +100,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="14px"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="@+id/buttonD"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/buttonD"
+        app:layout_constraintTop_toBottomOf="@+id/buttonD"
         app:layout_constraintVertical_bias="0.292" />
 
     <EditText

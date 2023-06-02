@@ -22,44 +22,59 @@ import java.util.ArrayList;
 
 public class Uyg3 extends AppCompatActivity {
     SQLiteDatabase database;
+    Urun urun;
+    ArrayList<Urun> urunler;
     ListView listeUrunler;
+    UrunAdapter urunAdapter;
     Button btnKaydet;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.uyg3);
+        super.onCreate(savedInstanceState); setContentView(R.layout.uyg3);
+        urunler = new ArrayList<>();
         listeUrunler = findViewById(R.id.urunListe);
+        urunAdapter = new UrunAdapter(Uyg3.this, urunler);
         btnKaydet = findViewById(R.id.btnYeniKayitEkle);
-        database = openOrCreateDatabase("urun",MODE_PRIVATE,null);
-        guncelle();
+        listeUrunler.setAdapter(urunAdapter);
+
+        database = this.openOrCreateDatabase("Urun", MODE_PRIVATE, null);
+        database.execSQL("CREATE TABLE IF NOT EXISTS urunler(id, urunadi, fiyat, adet, resim)");
+
+        getAllUrunler();
+
+        listeUrunler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent i = new Intent(Uyg3. this, UrunDetay.class);
+                i.putExtra("id", urunler.get(position).getId());
+                startActivity(i);
+            }
+        });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        guncelle();
-    }
-
-    private void guncelle() {
-        ArrayList<Urun> verilerList = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM urunler",null);
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") Integer id = cursor.getInt(cursor.getColumnIndex("id"));
-                @SuppressLint("Range") String kadi = cursor.getString(cursor.getColumnIndex("urunadi"));
-                @SuppressLint("Range") Double fiyat = cursor.getDouble(cursor.getColumnIndex("fiyat"));
-                @SuppressLint("Range") Integer adet= cursor.getInt(cursor.getColumnIndex("adet"));
-                verilerList.add(new Urun(id,kadi,fiyat,adet));
-            } while (cursor.moveToNext());
-            UrunAdapter listAdapter = new UrunAdapter(this,verilerList);
-            listAdapter.notifyDataSetChanged();
-            listeUrunler.setAdapter(listAdapter);
-        }
-    }
-
-    public void btnYeniKayitEkleClick(View View) {
-        Intent i = new Intent(Uyg3.this, UrunDetay.class);
-        i.putExtra("islem", true);
+    public void btnYeniKayitEkle(View view) {
+        Intent i = new Intent(Uyg3.this, UrunKayit.class);
+        i.putExtra("mod", "ekle");
         startActivity(i);
     }
+
+    public void getAllUrunler() {
+
+        Cursor cursor = database.rawQuery("SELECT * FROM urunler", null);
+        int kolonId = cursor.getColumnIndex("id");
+        int kolonUrunAdi = cursor.getColumnIndex("urunadi");
+        int kolonFiyat = cursor.getColumnIndex("fiyat");
+        int kolonAdet = cursor.getColumnIndex("adet");
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(kolonId);
+            String urunAdi = cursor.getString(kolonUrunAdi);
+            double fiyat = cursor.getDouble(kolonFiyat);
+            long adet = cursor.getLong(kolonAdet);
+
+            urun = new Urun(id, urunAdi, fiyat, adet, R.drawable.resim_yok);
+            urunler.add(urun);
+        }
+        cursor.close();
+    }
+
 }
