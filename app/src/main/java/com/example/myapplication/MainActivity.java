@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createDB(){
-        database = this.openOrCreateDatabase( "urun", MODE_PRIVATE, null );
+        database = this.openOrCreateDatabase( "Urun", MODE_PRIVATE, null );
 
         String TABLO = "CREATE TABLE IF NOT EXISTS urunler(id INTEGER PRIMARY KEY," +
                 "urunadi TEXT,"+
                 "fiyat DOUBLE,"+
-                "adet INTAGER)";
+                "adet INTEGER)";
         database.execSQL(TABLO);
 
     }

@@ -38,7 +38,7 @@ public class Uyg3 extends AppCompatActivity {
         listeUrunler.setAdapter(urunAdapter);
 
         database = this.openOrCreateDatabase("Urun", MODE_PRIVATE, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS urunler(id, urunadi, fiyat, adet, resim)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS urunler(id INTEGER PRIMARY KEY, urunadi TEXT, fiyat DOUBLE, adet INTEGER, resim INTEGER)");
 
         getAllUrunler();
 
@@ -47,6 +47,7 @@ public class Uyg3 extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent i = new Intent(Uyg3. this, UrunDetay.class);
                 i.putExtra("id", urunler.get(position).getId());
+                System.out.println("######" + urunler.get(position).getId());
                 startActivity(i);
             }
         });
