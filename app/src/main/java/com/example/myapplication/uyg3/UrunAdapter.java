@@ -2,6 +2,8 @@ package com.example.myapplication.uyg3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +52,13 @@ public class UrunAdapter extends ArrayAdapter<Urun> {
         satirUrunAdet = view.findViewById(R.id.satirUrunAdet);
         satirUrunResmi = view.findViewById(R.id.satirResim);
 
-        satirUrunResmi.setImageResource(R.drawable.resim_yok);
+        if(urun.getResim() == null || urun.getResim().length == 0) satirUrunResmi.setImageResource(R.drawable.resim_yok);
+        else {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(urun.getResim(), 0, urun.getResim().length);
+            satirUrunResmi.setImageBitmap(bitmap);
+        }
         satirUrunAdi.setText(urun.getUrunAdi());
-        satirUrunFiyat.setText(String.format("%.02f", urun.getFiyat()) + "TL");
+        satirUrunFiyat.setText(urun.getFiyat() + "TL");
         satirUrunAdet.setText(urun.getAdet() + "");
 
         return view;

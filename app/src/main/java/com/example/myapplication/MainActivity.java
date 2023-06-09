@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         String TABLO = "CREATE TABLE IF NOT EXISTS urunler(id INTEGER PRIMARY KEY," +
                 "urunadi TEXT,"+
-                "fiyat DOUBLE,"+
-                "adet INTEGER)";
+                "fiyat TEXT,"+
+                "adet TEXT," +
+                "resim BLOB)";
         database.execSQL(TABLO);
 
     }

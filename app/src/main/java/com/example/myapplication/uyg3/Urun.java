@@ -1,23 +1,21 @@
 package com.example.myapplication.uyg3;
 
+import java.sql.Blob;
+
 public class Urun {
   private int id;
   private String urunAdi;
-  private double fiyat;
-  private long adet;
-  private int resim;
+  private String fiyat;
+  private String adet;
+  private byte[] resim;
 
-    public Urun(int id, String urunAdi, double fiyat, long adet, int resim) {
+    public Urun(int id, String urunAdi, String fiyat, String adet, byte[] resim) {
         this.id = id;
         this.urunAdi = urunAdi;
         this.fiyat = fiyat;
         this.adet = adet;
         this.resim = resim;
     }
-
-    public Urun(int id, double fiyat, long adet, int resim_yok) {
-    }
-
 
     public int getId() {
         return id;
@@ -31,32 +29,20 @@ public class Urun {
         return urunAdi;
     }
 
-    public void setUrunAdi(String urunAdi) {
-        this.urunAdi = urunAdi;
-    }
 
-    public double getFiyat() {
+    public String getFiyat() {
         return fiyat;
     }
 
-    public void setFiyat(double fiyat) {
-        this.fiyat = fiyat;
-    }
 
-    public long getAdet() {
+    public String getAdet() {
         return adet;
     }
 
-    public void setAdet(long adet) {
-        this.adet = adet;
-    }
 
-    public int getResim() {
+    public byte[] getResim() {
         return resim;
     }
 
-    public void setResim(int resim) {
-        this.resim = resim;
-    }
 }
 

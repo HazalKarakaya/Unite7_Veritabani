@@ -23,7 +23,7 @@ public class UrunKayit extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_urun_kayit);
+        setContentView(R.layout.uyg3_urun_kayit);
         tanimlamalar();
         Intent i = getIntent();
         i.getIntExtra("id", 0);
@@ -49,22 +49,14 @@ public class UrunKayit extends AppCompatActivity {
         btnKaydet.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 if (mod.equals("degistir")) {
-                     String SORGU = "UPDATE urunler SET urunadi=?, fiyat=?, adet =? WHERE id=?";
-                     SQLiteStatement result = database.compileStatement(SORGU);
-                     result.bindString(1, txtUrunAdi.getText().toString());
-                     result.bindDouble(2, Double.parseDouble(txtUrunFiyat.getText().toString()));
-                     result.bindLong(3, Integer.parseInt(txtUrunAdet.getText().toString()));
-                     result.bindLong(4, id);
-                     result.execute();
-                 } else {
+
                      String SORGU = "INSERT INTO urunler (urunadi, fiyat, adet) VALUES (?,?,?)";
                      SQLiteStatement result = database.compileStatement(SORGU);
                      result.bindString(1, txtUrunAdi.getText().toString());
-                     result.bindDouble(2, Double.parseDouble(txtUrunFiyat.getText().toString()));
-                     result.bindLong(3, Integer.parseInt(txtUrunAdet.getText().toString()));
+                     result.bindString(2, txtUrunFiyat.getText().toString());
+                     result.bindString(3, txtUrunAdet.getText().toString());
                      result.execute();
-                 }
+
 
                  Intent i = new Intent(UrunKayit. this, Uyg3.class);
                  startActivity(i);
@@ -76,6 +68,6 @@ public class UrunKayit extends AppCompatActivity {
         txtUrunAdi = findViewById(R.id.txtUrunAdi);
         txtUrunFiyat = findViewById(R.id.txtUrunFiyat);
         txtUrunAdet = findViewById(R.id.txtUrunAdet);
-        btnKaydet = findViewById(R.id.btnkayit);
+        btnKaydet = findViewById(R.id.buttonKaydet);
     }
 }

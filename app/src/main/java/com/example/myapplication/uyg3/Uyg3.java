@@ -37,9 +37,14 @@ public class Uyg3 extends AppCompatActivity {
         btnKaydet = findViewById(R.id.btnYeniKayitEkle);
         listeUrunler.setAdapter(urunAdapter);
 
-        database = this.openOrCreateDatabase("Urun", MODE_PRIVATE, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS urunler(id INTEGER PRIMARY KEY, urunadi TEXT, fiyat DOUBLE, adet INTEGER, resim INTEGER)");
+        database = this.openOrCreateDatabase( "Urun", MODE_PRIVATE, null );
 
+        String TABLO = "CREATE TABLE IF NOT EXISTS urunler(id INTEGER PRIMARY KEY," +
+                "urunadi TEXT,"+
+                "fiyat TEXT,"+
+                "adet TEXT," +
+                "resim BLOB)";
+        database.execSQL(TABLO);
         getAllUrunler();
 
         listeUrunler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,13 +71,15 @@ public class Uyg3 extends AppCompatActivity {
         int kolonUrunAdi = cursor.getColumnIndex("urunadi");
         int kolonFiyat = cursor.getColumnIndex("fiyat");
         int kolonAdet = cursor.getColumnIndex("adet");
+        int kolonResim = cursor.getColumnIndex("resim");
         while (cursor.moveToNext()) {
             int id = cursor.getInt(kolonId);
             String urunAdi = cursor.getString(kolonUrunAdi);
-            double fiyat = cursor.getDouble(kolonFiyat);
-            long adet = cursor.getLong(kolonAdet);
+            String fiyat = cursor.getString(kolonFiyat);
+            String adet = cursor.getString(kolonAdet);
+            byte[] resim = cursor.getBlob(kolonResim);
 
-            urun = new Urun(id, urunAdi, fiyat, adet, R.drawable.resim_yok);
+            urun = new Urun(id, urunAdi, fiyat, adet, resim);
             urunler.add(urun);
         }
         cursor.close();

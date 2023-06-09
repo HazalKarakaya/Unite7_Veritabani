@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,8 +32,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.R;
-import com.example.myapplication.uyg3.UrunKayit;
-import com.example.myapplication.uyg3.Uyg3;
 
 import java.io.ByteArrayOutputStream;
 
@@ -101,11 +100,15 @@ public class UrunDetay extends AppCompatActivity {
         btnDegistir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), UrunKayit.class);
-                i.putExtra("mod", "degistir");
-                i.putExtra("id", id);
+                String SORGU = "UPDATE urunler SET urunadi=?, fiyat=?, adet =? WHERE id=?";
+                SQLiteStatement result = database.compileStatement(SORGU);
+                result.bindString(1, textViewUrunadi.getText().toString());
+                result.bindString(2, textViewUrunFiyat.getText().toString());
+                result.bindString(3,  textViewUrunAdet.getText().toString());
+                result.bindLong(4, id);
+                result.execute();
+                Intent i = new Intent(UrunDetay.this , Uyg3.class);
                 startActivity(i);
-                finish();
             }
         });
 
@@ -127,14 +130,27 @@ public class UrunDetay extends AppCompatActivity {
         });
     }
 
-    public Bitmap resimKucultucu(Bitmap b, int buyukluk) {
-        double oran = b.getWidth() / b.getHeight();
-        double uzunluk = buyukluk / oran;
-        return bitmap.createScaledBitmap(bitmap, buyukluk, (int) uzunluk, true);
+    private Bitmap resimKucultucu(Bitmap image) {
+        int maxSize = 256;
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float scale;
+
+        if (width > height) {
+            scale = (float) maxSize / (float) width;
+        } else if (height > width) {
+            scale = (float) maxSize / (float) height;
+        } else {
+            scale = (float) maxSize / (float) width;
+        }
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+        return Bitmap.createBitmap(image, 0, 0, width, height, matrix, true);
     }
 
     public void Kaydet() {
-        Bitmap kucukResim = resimKucultucu(bitmap, 250);
+        Bitmap kucukResim = resimKucultucu(bitmap);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         kucukResim.compress(Bitmap.CompressFormat.PNG, 50, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
@@ -191,11 +207,11 @@ public class UrunDetay extends AppCompatActivity {
 
     public void tanimlamalar() {
         urunResim = findViewById(R.id.imageView);
-        textViewUrunadi = findViewById(R.id.uAdiTxt);
-        textViewUrunFiyat = findViewById(R.id.uFiyatTxt);
-        textViewUrunAdet = findViewById(R.id.uAdetTxt);
+        textViewUrunadi = findViewById(R.id.txtUrunAdi);
+        textViewUrunFiyat = findViewById(R.id.txtUrunFiyat);
+        textViewUrunAdet = findViewById(R.id.txtUrunAdet);
         btnResimEkle = findViewById(R.id.buttonRE);
-        btnDegistir = findViewById(R.id.buttonD);
+        btnDegistir = findViewById(R.id.buttonKaydet);
         btnSil = findViewById(R.id.btnsil);
     }
 
